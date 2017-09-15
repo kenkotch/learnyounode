@@ -1,4 +1,4 @@
-//craigs code #6
+// craigs code #6
 // let filter_dir = require('./filterls_module')
 //
 // dir = process.argv[2]
@@ -15,9 +15,6 @@
 //   }
 // })
 
-
-
-
 // // HTTP Client
 // let http = require('http')
 // let url = process.argv[2]
@@ -27,3 +24,20 @@
 //     console.log(data.toString())
 //   })
 // })
+
+// HTTP Collect
+let http = require('http')
+
+let url = process.argv[2]
+let str = ''
+
+http.get(url, (res) => {
+  res.on('data', (addThis) => {
+    str += addThis
+    res.on('end', (data) => {
+      console.log(str.length)
+      console.log(str)
+      process.exit()
+    })
+  })
+})
